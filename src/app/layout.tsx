@@ -7,7 +7,6 @@ import { Navbar } from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { CurrencyProvider } from "@/lib/currency-context";
 import { KeyboardShortcuts } from "@/components/keyboard-shortcuts";
-import { Onboarding } from "@/components/onboarding";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -43,7 +42,6 @@ export default function RootLayout({
             <Navbar />
             <main className="flex-1">{children}</main>
             <KeyboardShortcuts />
-            <Onboarding />
             <Toaster position="bottom-right" richColors closeButton />
           </CurrencyProvider>
         </ThemeProvider>

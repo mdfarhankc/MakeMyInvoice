@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MakeMyInvoice
+
+Free online invoice generator. Create, manage, and export professional invoices as PDF. No sign-up needed — your data stays in your browser.
+
+## Features
+
+- **Invoice Management** — Create, edit, duplicate, and delete invoices with draft/sent/paid status tracking
+- **PDF Export** — Download pixel-perfect A4 PDFs with one click
+- **Client Directory** — Save client details and auto-fill when creating invoices
+- **Dashboard** — Stats cards, search, filter by status, sortable columns, overdue indicators
+- **Templates** — Save invoices as reusable templates for recurring work
+- **Auto-save Drafts** — Never lose work — drafts are saved automatically as you type
+- **CSV Export** — Select specific invoices or export all for bookkeeping
+- **Custom Numbering** — Configure prefix, YYMM date format, zero-padding, and sequential numbers
+- **15 Currencies** — USD, EUR, GBP, INR, JPY, CAD, AUD, CHF, CNY, BRL, KRW, MXN, SGD, AED, NGN
+- **Dark & Light Theme** — Toggle between themes or follow system preference
+- **Keyboard Shortcuts** — `N` new invoice, `/` search, `D` dashboard, `T` theme, `?` help
+- **Undo Delete** — Deleted an invoice by mistake? Hit undo in the toast
+- **100% Private** — All data stored in localStorage. Nothing leaves your browser
+
+## Tech Stack
+
+- [Next.js 16](https://nextjs.org/) — App Router, React 19, Turbopack
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS v4](https://tailwindcss.com/) — Utility-first styling
+- [shadcn/ui](https://ui.shadcn.com/) — Radix-based component library
+- [Motion](https://motion.dev/) — Animations
+- [next-themes](https://github.com/pacocoursey/next-themes) — Dark mode
+- [Sonner](https://sonner.emilkowal.dev/) — Toast notifications
+- [jsPDF](https://github.com/parallax/jsPDF) + [html2canvas-pro](https://github.com/nicolo-ribaudo/html2canvas-pro) — PDF generation
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+# Install dependencies
+bun install
+
+# Start dev server
 bun dev
+
+# Build for production
+bun run build
+
+# Start production server
+bun start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to get started.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Keyboard Shortcuts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Key | Action |
+|-----|--------|
+| `N` | Create new invoice |
+| `D` | Go to dashboard |
+| `/` | Focus search |
+| `T` | Toggle dark/light theme |
+| `?` | Show shortcuts help |
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+  app/
+    page.tsx              # Landing page
+    layout.tsx            # Root layout with providers
+    invoices/
+      page.tsx            # Dashboard
+      new/page.tsx        # Create invoice
+      [id]/page.tsx       # View invoice
+      [id]/edit/page.tsx  # Edit invoice
+    clients/page.tsx      # Client directory
+    settings/page.tsx     # Invoice numbering settings
+  components/
+    landing-hero.tsx      # Landing page hero + features
+    navbar.tsx            # Navigation bar
+    invoice-form.tsx      # Create/edit form
+    invoice-preview.tsx   # View invoice + actions
+    invoice-list.tsx      # Dashboard table
+    stats-cards.tsx       # Dashboard stats
+    client-directory.tsx  # Client CRUD
+    keyboard-shortcuts.tsx
+    theme-provider.tsx
+    ui/                   # shadcn/ui components
+  lib/
+    invoice-store.ts      # localStorage CRUD
+    types.ts              # TypeScript types + helpers
+    currency.ts           # Currency definitions
+    currency-context.tsx  # Currency React context
+    generate-pdf.ts       # PDF generation
+    utils.ts              # cn() utility
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
